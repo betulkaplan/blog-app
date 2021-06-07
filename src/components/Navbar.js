@@ -11,6 +11,8 @@ const MenuExampleSizeHuge = () => {
     setState({ activeItem: name });
   };
 
+  const currentUser = false;
+
   const { activeItem } = state;
 
   return (
@@ -24,11 +26,26 @@ const MenuExampleSizeHuge = () => {
       <Menu.Menu position="right">
         <Dropdown item icon="user">
           <Dropdown.Menu>
-            <Dropdown.Item onClick={() => history.push('/new-post')}>
-              New Post
-            </Dropdown.Item>
-            <Dropdown.Item>Login</Dropdown.Item>
-            <Dropdown.Item>Register</Dropdown.Item>
+            {currentUser ? (
+              <>
+                <Dropdown.Item onClick={() => history.push('/new-post')}>
+                  New Post
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => history.push('/profile')}>
+                  Profile
+                </Dropdown.Item>
+                <Dropdown.Item>Logout</Dropdown.Item>
+              </>
+            ) : (
+              <>
+                <Dropdown.Item onClick={() => history.push('/login')}>
+                  Login
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => history.push('/register')}>
+                  Register
+                </Dropdown.Item>
+              </>
+            )}
           </Dropdown.Menu>
         </Dropdown>
       </Menu.Menu>

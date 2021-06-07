@@ -3,6 +3,9 @@ import Navbar from './components/Navbar';
 import PostsContainer from './components/PostsContainer';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import NewPost from './components/NewPost';
+import Login from './components/Login';
+import Register from './components/Register';
+import AuthProvider from './context/AuthContext';
 
 function App() {
   const dummyArray = [
@@ -65,17 +68,21 @@ function App() {
   ];
   return (
     <div className="App">
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route exact path="/new-post">
-            <NewPost />
-          </Route>
-          <Route>
-            <PostsContainer posts={dummyArray} />
-          </Route>
-        </Switch>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Navbar />
+          <Switch>
+            <Route exact path="/new-post">
+              <NewPost />
+            </Route>
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route>
+              <PostsContainer posts={dummyArray} />
+            </Route>
+          </Switch>
+        </Router>
+      </AuthProvider>
     </div>
   );
 }

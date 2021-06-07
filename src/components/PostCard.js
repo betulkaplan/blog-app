@@ -1,11 +1,20 @@
 import React from 'react';
-import { Card, Icon } from 'semantic-ui-react';
+import { Card, Icon, Button } from 'semantic-ui-react';
 
 const extra = (
-  <a>
-    <Icon name="user" />
-    16 Friends
-  </a>
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'space-between',
+    }}
+  >
+    <a>
+      <Icon name="heart outline" />0
+    </a>
+    <a>
+      <Icon name="comment outline" />0
+    </a>
+  </div>
 );
 
 const CardExampleCardProps = ({ post }) => {
