@@ -1,7 +1,7 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import PostsContainer from './components/PostsContainer';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NewPost from './components/NewPost';
 import Login from './components/Login';
 import Register from './components/Register';

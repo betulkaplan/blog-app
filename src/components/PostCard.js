@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Icon, Button } from 'semantic-ui-react';
+import { Card, Icon } from 'semantic-ui-react';
 
 const extra = (
   <div
@@ -8,10 +8,10 @@ const extra = (
       justifyContent: 'space-between',
     }}
   >
-    <a>
+    <a href="/">
       <Icon name="heart outline" />0
     </a>
-    <a>
+    <a href="/">
       <Icon name="comment outline" />0
     </a>
   </div>

@@ -10,10 +10,8 @@ const FormExampleSuccess = () => {
 
   const handleSubmit = () => {
     createUser(email, password, firstName + ' ' + lastName);
-    console.log('form is submitted');
   };
 
-  console.log({ firstName, lastName, email, password });
   return (
     <div style={{ width: '500px', margin: 'auto' }}>
       <Form onSubmit={handleSubmit}>

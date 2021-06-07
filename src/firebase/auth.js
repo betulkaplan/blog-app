@@ -47,7 +47,6 @@ export const loginUser = async (email, password) => {
     .then((userCredential) => {
       // Signed in
       var user = userCredential.user;
-      console.log(user);
       // ...
     })
     .catch((error) => {
@@ -65,6 +64,18 @@ export const userObserver = async (setCurrentUser) => {
       setCurrentUser(null);
     }
   });
+};
+
+export const signOut = () => {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      // Sign-out successful.
+    })
+    .catch((error) => {
+      // An error happened.
+    });
 };
 
 export default firebaseApp;

@@ -7,8 +7,7 @@ const AuthProvider = (props) => {
   const [currentUser, setCurrentUser] = useState();
   useEffect(() => {
     userObserver(setCurrentUser);
-    console.log('CUREENT USER', currentUser);
-  }, []);
+  }, [currentUser]);
   return (
     <AuthContext.Provider value={{ currentUser }}>
       {props.children}
