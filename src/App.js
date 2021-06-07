@@ -6,6 +6,7 @@ import NewPost from './components/NewPost';
 import Login from './components/Login';
 import Register from './components/Register';
 import AuthProvider from './context/AuthContext';
+import Profile from './components/Profile';
 
 function App() {
   const dummyArray = [
@@ -77,6 +78,7 @@ function App() {
             </Route>
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/Profile" component={Profile} />
             <Route>
               <PostsContainer posts={dummyArray} />
             </Route>

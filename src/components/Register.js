@@ -7,9 +7,10 @@ const FormExampleSuccess = () => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [photo, setPhoto] = useState('');
 
   const handleSubmit = () => {
-    createUser(email, password, firstName + ' ' + lastName);
+    createUser(email, password, firstName + ' ' + lastName, photo);
   };
 
   return (
@@ -25,6 +26,11 @@ const FormExampleSuccess = () => {
           label="Second Name"
           placeholder="Your Secondname"
           onChange={(e) => setLastName(e.target.value)}
+        />
+        <Form.Input
+          label="Photo Url"
+          placeholder="Photo Url"
+          onChange={(e) => setPhoto(e.target.value)}
         />
         <Form.Input
           type="email"

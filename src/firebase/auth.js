@@ -2,6 +2,8 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
+import { useHistory } from 'react-router-dom';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyCrNZYd0mTppOMNxdqHk04u6H1Zr9JTeOw',
   authDomain: 'blog-app-d0c9b.firebaseapp.com',
@@ -16,7 +18,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-export const createUser = async (email, password, displayName) => {
+export const createUser = async (email, password, displayName, photo) => {
   try {
     await firebase
       .auth()
@@ -34,24 +36,26 @@ export const createUser = async (email, password, displayName) => {
         // ..
       });
     const currentUser = firebase.auth().currentUser;
-    currentUser.updateProfile({ displayName: displayName });
+    currentUser.updateProfile({ displayName: displayName, photoURL: photo });
   } catch (error) {
     alert('aldready in use');
   }
 };
 
-export const loginUser = async (email, password) => {
+export const loginUser = async (email, password, directToHome) => {
   await firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       // Signed in
       var user = userCredential.user;
+      directToHome();
       // ...
     })
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
+      alert('Could not sign in ');
     });
 };
 

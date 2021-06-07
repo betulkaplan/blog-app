@@ -28,12 +28,9 @@ const MenuExampleSizeHuge = () => {
       />
 
       <Menu.Menu position="right">
-        {currentUser ? (
+        {currentUser !== undefined && currentUser !== null ? (
           <Menu.Item>
-            <Label as="a">
-              <Icon name={currentUser?.displayName} />
-              {`${currentUser?.displayName}`}
-            </Label>
+            <Label size="large" as="a">{`${currentUser?.displayName}`}</Label>
           </Menu.Item>
         ) : null}
 

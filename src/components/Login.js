@@ -1,18 +1,17 @@
 import React, { useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
 import { Button, Form, Message } from 'semantic-ui-react';
 import { loginUser } from '../firebase/auth';
 import { AuthContext } from '../context/AuthContext';
+import { useHistory } from 'react-router-dom';
 
 const FormExampleSuccess = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { currentUser } = useContext(AuthContext);
-
   const history = useHistory();
+
   const handleSubmit = () => {
-    loginUser(email, password);
-    history.push('/');
+    loginUser(email, password, () => history.push('/'));
   };
   return (
     <div style={{ width: '500px', margin: 'auto' }}>
