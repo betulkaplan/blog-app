@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { Dropdown, Menu, Label, Icon } from 'semantic-ui-react';
+import { Dropdown, Menu, Label, Icon, Button } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 import { signOut } from '../firebase/auth';
 
@@ -26,6 +26,11 @@ const MenuExampleSizeHuge = () => {
         active={activeItem === 'home'}
         onClick={handleItemClick}
       />
+
+      <Menu.Menu position="right">
+        <Menu.Item name="BLOG APP" active={activeItem === 'home'} />
+        <Menu.Item name="" active={activeItem === 'home'} />
+      </Menu.Menu>
 
       <Menu.Menu position="right">
         {currentUser !== undefined && currentUser !== null ? (
