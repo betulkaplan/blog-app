@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Icon } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
 
 const extra = (
   <div
@@ -18,18 +19,31 @@ const extra = (
 );
 
 const CardExampleCardProps = ({ post }) => {
+  const history = useHistory();
+  const showContent = () => {
+    history.push({
+      pathname: '/full-content',
+      post: post,
+    });
+  };
   if (post.banner !== '') {
   }
   return (
-    <Card
-      centered
-      column
-      image={post.url}
-      header={post.title}
-      meta={post.author}
-      description={post.text}
-      extra={extra}
-    />
+    <>
+      <Card
+        onClick={(e) => {
+          e.preventDefault();
+          showContent();
+        }}
+        centered
+        column
+        image={post.url}
+        header={post.title}
+        meta={post.author}
+        description={post.text}
+        extra={extra}
+      />
+    </>
   );
 };
 
