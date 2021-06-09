@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { Dropdown, Menu, Label, Icon, Button } from 'semantic-ui-react';
+import { Dropdown, Menu, Label } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 import { signOut } from '../firebase/auth';
 
@@ -20,17 +20,12 @@ const MenuExampleSizeHuge = () => {
   const { activeItem } = state;
 
   return (
-    <Menu size="huge">
+    <Menu color={'teal'} inverted size="huge">
       <Menu.Item
         name="bettythebeth"
         active={activeItem === 'home'}
         onClick={handleItemClick}
       />
-
-      <Menu.Menu position="right">
-        <Menu.Item name="BLOG APP" active={activeItem === 'home'} />
-        <Menu.Item name="" active={activeItem === 'home'} />
-      </Menu.Menu>
 
       <Menu.Menu position="right">
         {currentUser !== undefined && currentUser !== null ? (
@@ -49,7 +44,14 @@ const MenuExampleSizeHuge = () => {
                 <Dropdown.Item onClick={() => history.push('/profile')}>
                   Profile
                 </Dropdown.Item>
-                <Dropdown.Item onClick={signOut}>Logout</Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => {
+                    signOut();
+                    history.push('/');
+                  }}
+                >
+                  Logout
+                </Dropdown.Item>
               </>
             ) : (
               <>

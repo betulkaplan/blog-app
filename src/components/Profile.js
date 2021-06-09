@@ -8,16 +8,22 @@ const Profile = () => {
   return (
     <div>
       <Card centered>
-        <Image src={`${currentUser?.photoURL}`} wrapped ui={false} />
-        <Card.Content>
-          <Card.Header>{currentUser.displayName}</Card.Header>
-          <Card.Meta>Joined in 2016</Card.Meta>
-          <Card.Description>{currentUser.email}</Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-          <Button>Delete Account</Button>
-          <Button>Edit Profile</Button>
-        </Card.Content>
+        {currentUser ? (
+          <>
+            <Image src={`${currentUser?.photoURL}`} wrapped ui={false} />
+            <Card.Content>
+              <Card.Header>{currentUser?.displayName}</Card.Header>
+              <Card.Meta>Joined in 2016</Card.Meta>
+              <Card.Description>{currentUser.email}</Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <Button>Delete Account</Button>
+              <Button>Edit Profile</Button>
+            </Card.Content>
+          </>
+        ) : (
+          <h2>You are not logged in</h2>
+        )}
       </Card>
     </div>
   );

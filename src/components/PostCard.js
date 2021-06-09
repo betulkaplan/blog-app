@@ -19,17 +19,15 @@ const extra = (
 
 const CardExampleCardProps = ({ post }) => {
   if (post.banner !== '') {
-    console.log('URL VAR', post.banner);
   }
-  console.log(post);
   return (
     <Card
       centered
       column
-      image={post.banner}
+      image={post.url}
       header={post.title}
       meta={post.author}
-      description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
+      description={post.text}
       extra={extra}
     />
   );

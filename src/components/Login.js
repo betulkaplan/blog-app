@@ -33,7 +33,7 @@ const FormExampleSuccess = () => {
             header="Form Completed"
             content="You're all signed up for the newsletter"
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Login</Button>
         </Form>
       ) : (
         <h2>Your are allready logged in</h2>

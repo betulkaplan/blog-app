@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/database';
 import 'firebase/firestore';
 
 import { useHistory } from 'react-router-dom';
@@ -16,7 +17,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+export const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 export const createUser = async (email, password, displayName, photo) => {
   try {
@@ -26,6 +27,7 @@ export const createUser = async (email, password, displayName, photo) => {
       .then((userCredential) => {
         // Signed in
         var user = userCredential.user;
+
         console.log(user);
         // ...
       })
@@ -63,6 +65,7 @@ export const userObserver = async (setCurrentUser) => {
   await firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       setCurrentUser(user);
+      console.log('OBSERVER OLUM ÇALIŞTI');
       // ...
     } else {
       setCurrentUser(null);
@@ -82,4 +85,11 @@ export const signOut = () => {
     });
 };
 
-export default firebaseApp;
+/* DATABASE PART */
+
+export const addPost = (post) => {
+  const postRef = firebase.database().ref('posts');
+  postRef.push(post);
+};
+
+export default firebase;
