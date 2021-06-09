@@ -21,6 +21,14 @@ const FullContent = (props) => {
           <h1>{post?.title}</h1>
           <h2>{post?.author}</h2>
           <h3>{post?.text}</h3>
+          <h3>posttan gelen {post?.author}</h3>
+          <h3>current user olan {currentUser?.email}</h3>
+          {currentUser.email === post.author ? (
+            <>
+              <button>Delete</button>
+              <button>Edit</button>
+            </>
+          ) : null}
         </>
       )}
     </div>
