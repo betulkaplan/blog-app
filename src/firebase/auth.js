@@ -97,4 +97,9 @@ export const deleteHandler = (id) => {
   postRef.remove();
 };
 
+export const editHandler = (info) => {
+  const postRef = firebase.database().ref('posts').child(info.id);
+  postRef.update(info);
+};
+
 export default firebase;
