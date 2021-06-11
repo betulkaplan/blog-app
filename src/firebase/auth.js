@@ -92,4 +92,9 @@ export const addPost = (post) => {
   postRef.push(post);
 };
 
+export const deleteHandler = (id) => {
+  const postRef = firebase.database().ref('posts').child(id);
+  postRef.remove();
+};
+
 export default firebase;
