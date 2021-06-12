@@ -3,6 +3,7 @@ import { AuthContext } from '../context/AuthContext';
 import { useHistory } from 'react-router-dom';
 import { deleteHandler, editHandler } from '../firebase/auth';
 import { Form, Input, TextArea, Button, Image } from 'semantic-ui-react';
+import { Typography } from '@material-ui/core';
 
 const FullContent = (props) => {
   console.log(props.location.post);

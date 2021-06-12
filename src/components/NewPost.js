@@ -3,22 +3,26 @@ import { Form, Input, TextArea, Button, Image } from 'semantic-ui-react';
 import { AuthContext } from '../context/AuthContext';
 import image from '../assets/new-post.svg';
 import { addPost } from '../firebase/auth';
+import { useHistory } from 'react-router';
 
 const FormExampleFieldControlId = () => {
   const [title, setTitle] = useState();
   const [url, setUrl] = useState();
   const [text, setText] = useState();
   const { currentUser } = useContext(AuthContext);
+  const history = useHistory();
   const handleSubmit = () => {
     addPost({
       title: title,
       url: url,
       text: text,
       author: currentUser.email,
+      faves: ['default'],
     });
     setTitle('');
     setUrl('');
     setText('');
+    history.push('/');
   };
   return (
     <div style={{ width: '600px', margin: 'auto' }}>

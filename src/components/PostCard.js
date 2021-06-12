@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Icon } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
+import Cardx from './Card';
 
 const extra = (
   <div
@@ -9,7 +10,7 @@ const extra = (
       justifyContent: 'space-between',
     }}
   >
-    <a href="/">
+    <a href="/" onClick={console.log('you cliked fav button')}>
       <Icon name="heart outline" />0
     </a>
     <a href="/">
@@ -30,7 +31,7 @@ const CardExampleCardProps = ({ post }) => {
   }
   return (
     <>
-      <Card
+      {/* <Card
         onClick={(e) => {
           e.preventDefault();
           showContent();
@@ -42,7 +43,10 @@ const CardExampleCardProps = ({ post }) => {
         meta={post.author}
         description={post.text}
         extra={extra}
-      />
+      /> */}
+      <>
+        <Cardx post={post} />
+      </>
     </>
   );
 };
