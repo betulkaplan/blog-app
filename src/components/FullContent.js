@@ -2,14 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useHistory } from 'react-router-dom';
 import { deleteHandler, editHandler } from '../firebase/auth';
-import { Form, Input, TextArea, Image } from 'semantic-ui-react';
-import { Typography } from '@material-ui/core';
+import { Form, Input, TextArea } from 'semantic-ui-react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice';
-import Icon from '@material-ui/core/Icon';
 import SaveIcon from '@material-ui/icons/Save';
 import EditIcon from '@material-ui/icons/Edit';
 
@@ -21,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
 
 const FullContent = (props) => {
   const classes = useStyles();
-  console.log(props.location.post);
   const post = props.location.post;
   const history = useHistory();
   const { currentUser } = useContext(AuthContext);
@@ -34,8 +29,6 @@ const FullContent = (props) => {
   const [isEditting, setIsEditting] = useState(false);
 
   useEffect(() => {
-    console.log(post?.id);
-
     if (!currentUser) {
       alert('User is not signed in');
       history.push('/');

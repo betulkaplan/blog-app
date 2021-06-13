@@ -4,8 +4,6 @@ import 'firebase/database';
 import 'firebase/firestore';
 import 'firebase/firebase-storage';
 
-import { useHistory } from 'react-router-dom';
-
 const firebaseConfig = {
   apiKey: 'AIzaSyCrNZYd0mTppOMNxdqHk04u6H1Zr9JTeOw',
   authDomain: 'blog-app-d0c9b.firebaseapp.com',
@@ -46,7 +44,7 @@ export const createUser = async (email, password, displayName, photo) => {
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorMessage);
+        console.log(errorMessage, errorCode);
         // ..
       });
     const currentUser = firebase.auth().currentUser;
@@ -62,14 +60,14 @@ export const loginUser = async (email, password, directToHome) => {
     .signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       // Signed in
-      var user = userCredential.user;
+      //var user = userCredential.user;
       directToHome();
       // ...
     })
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
-      alert('Could not sign in ');
+      alert(`Could not sign in Error Code: ${errorCode}, - ${errorMessage}`);
     });
 };
 

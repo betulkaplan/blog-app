@@ -5,21 +5,28 @@ import PostCard from './PostCard';
 
 const GridExampleRelaxed = () => {
   const { postList, isLoading } = useFetch();
-  console.log('yüklenen postlar: ', postList);
   return (
-    <Grid relaxed columns={4}>
-      {isLoading ? (
-        <h2>Loading</h2>
-      ) : (
-        <>
-          {postList?.map((post) => (
-            <Grid.Column>
-              <PostCard post={post} />
-            </Grid.Column>
-          ))}
-        </>
-      )}
-    </Grid>
+    <>
+      <h1
+        style={{ color: 'teal' }}
+        class="MuiTypography-root MuiTypography-h2 MuiTypography-colorTextPrimary MuiTypography-gutterBottom MuiTypography-alignCenter"
+      >
+        DASHBOARD
+      </h1>
+      <Grid relaxed columns={4}>
+        {isLoading ? (
+          <h2>Loading</h2>
+        ) : (
+          <>
+            {postList?.map((post, index) => (
+              <Grid.Column className="centered">
+                <PostCard post={post} key={index} />
+              </Grid.Column>
+            ))}
+          </>
+        )}
+      </Grid>
+    </>
   );
 };
 

@@ -54,7 +54,7 @@ export default function MediaCard({ post }) {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} style={{ margin: 'auto' }}>
       <CardActionArea onClick={showContent}>
         <CardMedia
           className={classes.media}
