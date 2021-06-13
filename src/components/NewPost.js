@@ -43,6 +43,10 @@ const FormExampleFieldControlId = () => {
           placeholder="Image URL*"
           onChange={(e) => setUrl(e.target.value)}
         />
+        <input
+          type="file"
+          onChange={(e) => console.log('yüklenen', e.target.file)}
+        />
         <Form.Field
           value={text}
           id="form-textarea-control-opinion"
