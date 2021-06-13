@@ -17,7 +17,7 @@ const FormExampleSuccess = () => {
 
   return (
     <div style={{ width: '500px', margin: 'auto' }}>
-      <Form
+      {/* <Form
       //onSubmit={handleSubmit}
       >
         <Form.Input
@@ -54,24 +54,37 @@ const FormExampleSuccess = () => {
           content="You're all signed up for the newsletter"
         />
         <Button type="submit">Register</Button>
-      </Form>
+      </Form> */}
 
       <div className="formik-container">
         <Formik
           initialValues={{
             name: '',
             email: '',
+            password: '',
+            confirmPassword: '',
             agree: false,
             url: '',
           }}
           validationSchema={Yup.object({
-            name: Yup.string().required('Name cannot be left empty'),
+            name: Yup.string()
+              .max(15, 'Must be 15 characters or less')
+              .required('Name cannot be left empty'),
             email: Yup.string().email().required('Email cannot be left empty'),
-            agree: Yup.boolean().required('You have to agree to register'),
+            agree: Yup.boolean()
+              .required('You have to agree to register')
+              .oneOf([true], 'The terms and conditions must be accepted.'),
+            password: Yup.string()
+              .min(6, 'Password must be min 6 chars')
+              .required('Password is required'),
+            confirmPassword: Yup.string()
+              .oneOf([Yup.ref('password'), null], 'Password must match')
+              .required('Confirm password is required'),
           })}
-          onSubmit={(values, { resetForm, setSubmittin }) => {
-            console.log(values);
-            //createUser(values.email, password, firstName + ' ' + lastName, photo);
+          onSubmit={(values, { resetForm, setSubmitting }) => {
+            console.log(values.agree);
+            createUser(values.email, values.password, values.name, values.url);
+            setSubmitting(false);
           }}
         >
           {({
@@ -98,7 +111,18 @@ const FormExampleSuccess = () => {
               {errors.name && touched.name && (
                 <div style={{ color: 'red' }}>{errors.name}</div>
               )}
-
+              <Form.Input
+                label="Profile Picture URL"
+                id="url"
+                type="input"
+                placeholder="URL"
+                className="input"
+                value={values.url}
+                onChange={handleChange}
+              />
+              {errors.url && touched.url && (
+                <div style={{ color: 'red' }}>{errors.url}</div>
+              )}
               <Form.Input
                 label="Email"
                 id="email"
@@ -111,16 +135,44 @@ const FormExampleSuccess = () => {
               {errors.email && touched.email && (
                 <div style={{ color: 'red' }}>{errors.email}</div>
               )}
+              <Form.Input
+                label="Password"
+                id="password"
+                type="password"
+                placeholder="Your password..."
+                className="input"
+                value={values.password}
+                onChange={handleChange}
+              />
+              {errors.password && touched.password && (
+                <div style={{ color: 'red' }}>{errors.password}</div>
+              )}
+              <Form.Input
+                label="Confirm Password"
+                id="confirmPassword"
+                type="password"
+                placeholder="Confirm your password..."
+                className="input"
+                value={values.confirmPassword}
+                onChange={handleChange}
+              />
+              {errors.confirmPassword && touched.confirmPassword && (
+                <div style={{ color: 'red' }}>{errors.confirmPassword}</div>
+              )}
               <input
                 id="agree"
+                name="agree"
                 type="checkbox"
                 value={values.agree}
                 onChange={handleChange}
-                disabled={!dirty || isSubmitting}
               />
               <label htmlFor="agree">
                 I agree with the terms and conditions.
               </label>
+              {errors.agree && touched.agree && (
+                <div style={{ color: 'red' }}>{errors.agree}</div>
+              )}{' '}
+              <br />
               <Button type="submit" disabled={!dirty || isSubmitting}>
                 Register
               </Button>

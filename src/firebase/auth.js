@@ -21,6 +21,17 @@ const firebaseConfig = {
 export const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 export const createUser = async (email, password, displayName, photo) => {
+  console.log(
+    'sırasıyla gelene değerler:',
+    'email:',
+    email,
+    'password:',
+    password,
+    'name:',
+    displayName,
+    'photo:',
+    photo
+  );
   try {
     await firebase
       .auth()
